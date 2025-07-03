@@ -26,6 +26,70 @@ for group, channels in channel_groups.items():
     for name in channels:
         allowed_channels[name.lower()] = group
 
+# === Your custom EXTINF replacements ===
+custom_channel_data = {
+  "sony sports ten 5": {
+    "tvg-id": "hello",
+    "tvg-name": "Sony sports ten 5",
+    "tvg-logo": "https://www.indiantvinfo.com/media/2022/10/Sony-Sports-Ten5-HD-New-Logo.png",
+    "display-name": "Sony sports ten 5"
+  },
+  "sony sports ten 5 hd": {
+    "tvg-id": "",
+    "tvg-name": "Sony sports ten 5 HD",
+    "tvg-logo": "https://www.indiantvinfo.com/media/2022/10/Sony-Sports-Ten5-New-Logo.png",
+    "display-name": "Sony sports ten 5 HD"
+  },
+  "sony sports ten 1 hd": {
+    "tvg-id": "",
+    "tvg-name": "Sony sports ten 1 HD",
+    "tvg-logo": "https://www.indiantvinfo.com/media/2022/10/Sony-Sports-Ten1-HD-New-Logo.png",
+    "display-name": "Sony sports ten 1 HD"
+  },
+  "sony sports ten 1": {
+    "tvg-id": "",
+    "tvg-name": "Sony sports ten 1",
+    "tvg-logo": "https://www.indiantvinfo.com/media/2022/10/Sony-Sports-Ten1-New-Logo.png",
+    "display-name": "Sony sports ten 1"
+  },
+  "sony sports ten 2 hd": {
+    "tvg-id": "",
+    "tvg-name": "Sony sports ten 2 HD",
+    "tvg-logo": "https://www.indiantvinfo.com/media/2022/10/Sony-Sports-Ten2-HD-New-Logo.png",
+    "display-name": "Sony sports ten 2 HD"
+  },
+  "sony sports ten 2": {
+    "tvg-id": "",
+    "tvg-name": "Sony sports ten 2",
+    "tvg-logo": "https://www.indiantvinfo.com/media/2022/10/Sony-Sports-Ten2-HD-New-Logo.png",
+    "display-name": "Sony sports ten 2"
+  },
+  "sony sports ten 3 hd": {
+    "tvg-id": "",
+    "tvg-name": "Sony sports ten 3 HD",
+    "tvg-logo": "https://www.indiantvinfo.com/media/2022/10/Sony-Sports-Ten3-HD.png",
+    "display-name": "Sony sports ten 3 HD"
+  },
+  "sony sports ten 3": {
+    "tvg-id": "",
+    "tvg-name": "Sony sports ten 3",
+    "tvg-logo": "https://www.indiantvinfo.com/media/2022/10/Sony-Sports-Ten3-HD.png",
+    "display-name": "Sony sports ten 3"
+  },
+  "sony sports ten 4 hd": {
+    "tvg-id": "",
+    "tvg-name": "Sony sports ten 4 HD",
+    "tvg-logo": "https://www.indiantvinfo.com/media/2022/10/Sony-Sports-Ten4.png",
+    "display-name": "Sony sports ten 4 HD"
+  },
+  "sony sports ten 4": {
+    "tvg-id": "",
+    "tvg-name": "Sony sports ten 4",
+    "tvg-logo": "https://www.indiantvinfo.com/media/2022/10/Sony-Sports-Ten4.png",
+    "display-name": "Sony sports ten 4"
+  }
+}
+
 # === Fetch playlist ===
 print(f"📥 Fetching playlist from: {SOURCE_URL}")
 try:
@@ -47,18 +111,33 @@ while i + 1 < len(lines):
         group = allowed_channels.get(channel_name.lower())
 
         if group:
-            # Inject or update group-title
-            if 'group-title="' in extinf:
-                updated_extinf = re.sub(r'group-title=".*?"', f'group-title="{group}"', extinf)
+            channel_key = channel_name.lower()
+            custom_info = custom_channel_data.get(channel_key)
+
+            if custom_info:
+                # Build full custom EXTINF line
+                updated_extinf = (
+                    f'#EXTINF:-1 '
+                    f'tvg-id="{custom_info.get("tvg-id", "")}" '
+                    f'tvg-name="{custom_info.get("tvg-name", "")}" '
+                    f'tvg-logo="{custom_info.get("tvg-logo", "")}" '
+                    f'tvg-chno="{custom_info.get("tvg-chno", "")}" '
+                    f'group-title="{group}",' 
+                    f'{custom_info.get("display-name", channel_name)}'
+                )
             else:
-                updated_extinf = extinf.replace(",", f' group-title="{group}",', 1)
+                # fallback: just update group-title if no custom data
+                if 'group-title="' in extinf:
+                    updated_extinf = re.sub(r'group-title=".*?"', f'group-title="{group}"', extinf)
+                else:
+                    updated_extinf = extinf.replace(",", f' group-title="{group}",', 1)
 
             output_blocks.append(f"{updated_extinf}\n{url}")
         i += 2
     else:
         i += 1
 
-# === Write output
+# === Write output ===
 output_file = "sony-with-sports.m3u"
 if output_blocks:
     print(f"✅ Found {len(output_blocks)} categorized channels.")
