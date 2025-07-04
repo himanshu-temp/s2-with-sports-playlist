@@ -29,61 +29,61 @@ for group, channels in channel_groups.items():
 # === Your custom EXTINF replacements ===
 custom_channel_data = {
   "sony sports ten 5": {
-    "tvg-id": "hello",
+    "tvg-id": "525",
     "tvg-name": "Sony sports ten 5",
     "tvg-logo": "https://www.indiantvinfo.com/media/2022/10/Sony-Sports-Ten5-HD-New-Logo.png",
     "display-name": "Sony sports ten 5"
   },
   "sony sports ten 5 hd": {
-    "tvg-id": "",
+    "tvg-id": "155",
     "tvg-name": "Sony sports ten 5 HD",
     "tvg-logo": "https://www.indiantvinfo.com/media/2022/10/Sony-Sports-Ten5-New-Logo.png",
     "display-name": "Sony sports ten 5 HD"
   },
   "sony sports ten 1 hd": {
-    "tvg-id": "",
+    "tvg-id": "162",
     "tvg-name": "Sony sports ten 1 HD",
     "tvg-logo": "https://www.indiantvinfo.com/media/2022/10/Sony-Sports-Ten1-HD-New-Logo.png",
     "display-name": "Sony sports ten 1 HD"
   },
   "sony sports ten 1": {
-    "tvg-id": "",
+    "tvg-id": "514",
     "tvg-name": "Sony sports ten 1",
     "tvg-logo": "https://www.indiantvinfo.com/media/2022/10/Sony-Sports-Ten1-New-Logo.png",
     "display-name": "Sony sports ten 1"
   },
   "sony sports ten 2 hd": {
-    "tvg-id": "",
+    "tvg-id": "891",
     "tvg-name": "Sony sports ten 2 HD",
     "tvg-logo": "https://www.indiantvinfo.com/media/2022/10/Sony-Sports-Ten2-HD-New-Logo.png",
     "display-name": "Sony sports ten 2 HD"
   },
   "sony sports ten 2": {
-    "tvg-id": "",
+    "tvg-id": "891",
     "tvg-name": "Sony sports ten 2",
     "tvg-logo": "https://www.indiantvinfo.com/media/2022/10/Sony-Sports-Ten2-HD-New-Logo.png",
     "display-name": "Sony sports ten 2"
   },
   "sony sports ten 3 hd": {
-    "tvg-id": "",
+    "tvg-id": "892",
     "tvg-name": "Sony sports ten 3 HD",
     "tvg-logo": "https://www.indiantvinfo.com/media/2022/10/Sony-Sports-Ten3-HD.png",
     "display-name": "Sony sports ten 3 HD"
   },
   "sony sports ten 3": {
-    "tvg-id": "",
+    "tvg-id": "524",
     "tvg-name": "Sony sports ten 3",
     "tvg-logo": "https://www.indiantvinfo.com/media/2022/10/Sony-Sports-Ten3-HD.png",
     "display-name": "Sony sports ten 3"
   },
   "sony sports ten 4 hd": {
-    "tvg-id": "",
+    "tvg-id": "1772",
     "tvg-name": "Sony sports ten 4 HD",
     "tvg-logo": "https://www.indiantvinfo.com/media/2022/10/Sony-Sports-Ten4.png",
     "display-name": "Sony sports ten 4 HD"
   },
   "sony sports ten 4": {
-    "tvg-id": "",
+    "tvg-id": "1773",
     "tvg-name": "Sony sports ten 4",
     "tvg-logo": "https://www.indiantvinfo.com/media/2022/10/Sony-Sports-Ten4.png",
     "display-name": "Sony sports ten 4"
